@@ -30,29 +30,48 @@ def get_top_news_stories():
     return articles
 
 
+# def generate_news_summaries(news_content):
+#     """
+#     """
+#     client = OpenAI(api_key=st.secrets["openai"]["openai_key"],)
+#     if news_content == None:
+#         output = "EMPTY"
+    
+#     else:
+#         completion = client.chat.completions.create(
+#                   model="gpt-4o-mini-2024-07-18",
+
+#                   messages=[
+#                     {"role": "system", 
+#                      "content": """""Summarize this news story. Try to keep it to 5-8 sentences."""},
+
+#                     {"role": "user", 
+#                      "content": news_content}
+#                   ]
+#                 )
+
+#         output = completion.choices[0].message.content
+    
+#     return output
+
+
 def generate_news_summaries(news_content):
     """
     """
-    client = OpenAI(api_key=st.secrets["openai"]["openai_key"],)
-    if news_content == None:
-        output = "EMPTY"
+    openai.api_key = st.secrets["openai"]["openai_key"]
     
-    else:
-        completion = client.chat.completions.create(
-                  model="gpt-4o-mini-2024-07-18",
-
-                  messages=[
-                    {"role": "system", 
-                     "content": """""Summarize this news story. Try to keep it to 5-8 sentences."""},
-
-                    {"role": "user", 
-                     "content": news_content}
-                  ]
-                )
-
-        output = completion.choices[0].message.content
+    if news_content is None:
+        return "EMPTY"
     
-    return output
+    completion = openai.ChatCompletion.create(
+        model="gpt-4o-mini",
+        messages=[
+            {"role": "system", "content": "Summarize this news story. Try to keep it to 5-8 sentences."},
+            {"role": "user", "content": news_content},
+        ]
+    )
+
+    return completion.choices[0].message.content
 
 def do_stuff_on_page_load():
 #     st.set_page_config(layout="wide", page_title="Quick News", #centered
