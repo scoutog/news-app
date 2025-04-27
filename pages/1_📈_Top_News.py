@@ -7,7 +7,7 @@ from streamlit_functions import *
 # do_stuff_on_page_load()
 st.set_page_config(page_title="The Brief", page_icon="📰", layout="centered")
 
-st.subheader("📰 Todays Top Stories - Summarized")
+st.subheader("📰 Today's Top Stories - Summarized")
 
 st.write("---")
 
