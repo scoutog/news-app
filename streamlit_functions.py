@@ -1,5 +1,5 @@
-# import openai
-from openai import OpenAI
+import openai
+# from openai import OpenAI
 import requests
 from datetime import datetime, timedelta
 from tqdm import tqdm
@@ -32,12 +32,14 @@ def get_top_news_stories():
 def generate_news_summaries(news_content):
     """
     """
-    client = OpenAI(api_key=st.secrets["openai"]["openai_key"])
+#     client = OpenAI(api_key=st.secrets["openai"]["openai_key"])
+    openai.api_key = st.secrets["openai"]["openai_key"]
     
     if news_content is None:
         return "EMPTY"
     
-    response = client.chat.completions.create(
+#     response = client.chat.completions.create(
+    response = openai.ChatCompletion.create(
         model="gpt-4o-mini", 
         messages=[
             {"role": "system", "content": "Summarize this news story. Try to keep it to 5-8 sentences."},
