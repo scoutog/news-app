@@ -38,8 +38,8 @@ for article in articles:
         formatted_date = datetime.strptime(publish_date, '%Y-%m-%dT%H:%M:%SZ').strftime('%m-%d-%Y')
         
         # Display content
-        st.header(f"{apa_title_case(title)}")
-        st.subheader(f"By {author} {name}, {formatted_date}")
+        st.subheader(f"{apa_title_case(title)}")
+        st.caption(f"By {author} {name}, {formatted_date}")
 #         st.image(image_url)
 #         st.write(summary)
         st.markdown(
